@@ -1,0 +1,194 @@
+
+--------------------------------------------- COMANDOS DE GIT Y GITHUB ---------------------------------------------------------
+
+
+ - git config --global user.name "Alfonso"  		=> se configura el nombre
+
+ - git config --global user.email "alfonso@gmail.com"  	=> se configura el email
+
+ - git config --global -e 				=> se ve el archivo donde se ha configurado el nombre y correo
+
+ - git init						=> se inicia el repositorio
+
+ - git status						=> se puede ver el arbol de trabajo
+
+ - git status -s					=> lo mismo que el anterior pero con menos cosas por pantalla
+
+ - git status -s -b					=> ademas de los dos anteriores se muestra tambien la rama en la que estas
+
+ - git add .						=> añadimos todos lo archivos al arbol de trabajo
+
+ - git add -A						=> lo mismo que el comando anterior
+
+ - git add nombrecarpeta/				=> añadimos solo los archivos que esten en la carpeta
+
+ - git add nombrecarpeta/*.pdf				=> añadimos solo los archivos que esten en la carpeta y que solo tengan la extension indicada
+
+ - git add "*.txt"					=> añadimos todos lo archivos del proyecto que tengan la extension indicada
+
+ - git add *.pdf					=> añadimos los archivos con la extension indicada pero solo los que esten en ese directorio
+
+ - git reset nombrearchivo				=> quitamos del arbol de trabajo el archivo indicado
+
+ - git reset *.css					=> lo mismo que el anterior pero con todos los archivos que tengan esa extension
+
+ - git reset css/					=> lo mismo pero que esten en esa carpeta
+
+ - git commit -m "comentario"				=> con ese se hace el commit que es como una foto del proyecto en ese preciso momento y se añade un comentario
+
+ - git commit -am "comentario"				=> se hace el commit como el anterior pero sin que antes se haya tenido que hacer el "add" (se hace todo a la vez el add y el commit)
+
+ - git commit -amend -m "comentario nuevo"		=> si te has equivocado en el comentario haciendo el commit se puede revertir con este comando
+
+ - git log --oneline --decorate -- all --graph		=> muestra la linea de tiempo del proyecto sin mostrar mucha informacion solo la relevante
+
+ - git config --global alias.lg "log --oneline --decorate --all --graph"	=> con esto se crea un alias que hara lo que le indiquemos lo que hay entre las comillas y tendra como nombre lo que hay despues del punto de alias
+
+ - git config --global alias.s "status -s -b" 		=> se crea un alias que muestra el arbol de trabajo mostrando la rama en la que estas
+
+ - git config --global alias.nombre "lo que quieras que haga"  => asi se crean lo alias poniendo lo que quieras hacer entre las comillas con todos los parametros
+
+ - git diff						=> se pueden ver lo cambios en los archivos modificados pero que no se han añadido con el add
+
+ - git diff --staged					=> lo mismo que el anterior pero una vez ya se han añadido con el add
+
+ - git checkout -- .					=> si quieres revertir todo el proyecto al ultimo commit
+
+ - git checkout -- nombrearchivo			=> si se quiere revertir solo un archivo al ultimo commit
+
+ - git --soft id_commit 				=> se revierte al commit que se ponga sin borrar los commit hechos
+
+ - git --hard id_commit					=> lo mismo que el anterior pero es mas restrictivo 
+
+ - git reflog  						=> se ven todos los log hechos durante toda la historia del repositorio
+
+ - git reset --mixed id_commit				=> se vuelve al commitque quieras de la historia
+
+ - git reset --hard id_commit_borrado			=> lo mismo que el anterior pero mas "duro"
+
+ - git mv nombre_actual nombre_nuevo			=> renombra el archivo
+
+ - git rm nombre_archivo				=> elimina el archivo (tanto el anterior como este comando es muy bueno porque todas las modificaciones las guarda git tanto el archivo eliminado como el "viejo nombre")
+
+ - Para ignorar archivos y carpetas enteras hay que crear un archivo que se llame tal cual ".gitignore" y dentro por linea se ponen lo archivos o carpetas que se desea ignorar
+
+ -------- RAMAS ----------------
+
+ - Una rama es una line a de tiempo.....
+
+ - git branch nombre_de_la_rama				=> crea una nueva rama
+
+ - git branch						=> muestra las ramas que existen y en cual te encuentras
+
+ - git checkout nombre_de_la_rama			=> te mueve a la rama que quieras
+
+ - git merge nombre_rama_a_unir				=> estando en la rama MASTER se une la rama "alternativa"
+
+ - git branch -d nombre_rama				=> borra la rama que quieras
+
+ - git checkout -b nombre_rama 				=> crea una rama nueva y automaticamente te mueve a ella
+
+ - git rebase master					=> estando en otra rama la une a la rama master dejando lo commit de la rama alternativa al final de la rama master (es un poco lioso)
+
+ - git rebase -i HEAD~4 				=> se pueden unir varios commit en uno solo (saldrian varias pantallas cogiendo los ultimos cuatro commit y puedes elegir cuales quieres unir, es un poco lioso)
+
+ - Tambien se puede separa un commit en varios commit con git rebase pero es muy lioso, si en un futuro se necesita sen buscara informacion en san google
+
+ ------ Creando Tag --------
+
+ - Un tag es un nombre o version de todo el proyecto en un punto de la historia de este en concreto
+
+ - git tag nombre_tag					=> crea un tag simple
+
+ - git tag -d nombre_tag				=> elimina un tag en concreto
+
+ - git tag -a version -m "comentario"			=> crea un tag con una version indicada y con un comentario
+
+ - git tag -a version hash_commit -m "comentario"	=> crea un tag con una version en un commit antiguo de la historia y con un comentario
+
+ - git show pones_tag					=> se muestra toda la informacion del tag que quieras. Ejem: git show v1.0.0
+
+
+ ------- STASH ---------
+
+ - Un stash es como una caja fuerte donde se puede guardar el progreso que llevas por si tienes que volver a un commit anterior pero sin perder lo que has hecho hasta ese momento pero sin necesidad de que se haya hecho un commit
+
+ - git stash						=> guarda todo el progreso que hayas hecho
+
+ - git stash list					=> te muestra todos los stash que has hecho
+
+ - git stash pop					=> extrae el ultimo stash recuperando los cambios que no se habian hecho incluso aunque se haya hecho un commit antes de volver al stash
+
+
+ - Si al hacer un git stash hay un conflicto no se eliminara el stash, primero hay que solucionar los conflictos y una vez resueltos ejecutar:
+
+ - git stash drop					=> eso eliminara el stash que no se habia eliminado por los conflictos
+
+ - git stash apply stash@{1}				=> si tienes varios en el stash se recupera el que quieras poniendo en vez de 1 el numero que tengas en la lista del stash
+
+ - git stash save "comentario"				=> guarda en el stash junto con un comentario MUY UTIL
+
+ - git stash clear					=> elimina todas las entradas del stash sin preguntar
+
+ 
+
+------------ Trabajando con github ---------------------------------
+
+ - Una vez creada una cuenta de github y hecho lo recomendado por github (el remote y el push) se empieza a trabajar
+
+ - git push -u origin master				=> sube los cambios a github
+
+ - git push --tags					=> sube a github todos los tags que teniamos en nuestro proyecto que no suben por defecto (hay que hacerlo manualmente)
+
+ - git pull origin master				=> tw baja todas las modificaciones que se han hecho al repositorio de github (no hace falta el origin master porque pusimos el -u al hacer el push)
+
+ - git clone url_del_repositorio 			=> te clona el repositorion en el directorio en el que estes
+
+ - git clone url_del_repositorio nombre_nuevo		=> te clona el repositorio de github en el directorio en el que estes y le pone el nombre nuevo que tu quieras
+
+ - git fetch						=> para cuando vas hacer un push pero te dice que hay algun cambio en github pero no sabes que es, te crea una rama nueva en local con la cual luego puedes hacer un pull y te hace automaticamente un merge
+
+ - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
